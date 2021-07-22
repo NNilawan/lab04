@@ -5,13 +5,13 @@
     <div class="pagination">
       <router-link
       id="page-prev"
-      :to="{ name: 'EventList', query: { page: page - 1}}"
+      :to="{ name: 'EventList', query: { page: page - 1, size:size }}"
       rel="prev"
       v-if="page != 1"> Prev Page </router-link>
 
       <router-link
         id="page-next"
-      :to="{ name: 'EventList', query: { page: page + 1}}"
+      :to="{ name: 'EventList', query: { page: page + 1, size:size}}"
       rel="next"
       v-if="hasNextPage"> Next Page </router-link>
     </div>
@@ -30,6 +30,10 @@ export default {
     page: {
       type: Number,
       required: true
+    },
+    size: {
+      type: Number,
+      required: true
     }
   },
   components: {
@@ -43,7 +47,7 @@ export default {
   },
   created() {
     watchEffect(() => {
-      EventService.getEvents(2, this.page)
+      EventService.getEvents(this.size, this.page)
       .then((response) => {
         this.events = response.data
         this.totalEvents = response.headers['x-total-count'] // <-- Store it
@@ -56,7 +60,7 @@ export default {
   computed:{
     hasNextPage() {
       // First, calculate total pages
-      let totalPages = Math.ceil(this.totalEvents / 2) // 2 is events per page
+      let totalPages = Math.ceil(this.totalEvents / this.size)
       // Then check to see if the current page is less than the total pages.
       return this.page < totalPages
     }

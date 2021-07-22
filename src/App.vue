@@ -3,6 +3,30 @@
     <router-link :to="{name: 'EventList'}">Home</router-link> |
     <router-link :to="{name: 'About'}">About</router-link>
   </div>
+  <div>
+    Size: 
+    <router-link
+      id="page-s"
+      :to="{ name: 'EventList', query: { size: 2}}"
+      rel="small"
+    > S
+    </router-link>
+
+    <router-link
+      id="page-m"
+      :to="{ name: 'EventList', query: { size: 4}}"
+      rel="medium"
+    > M
+    </router-link>
+
+    <router-link
+      id="page-l"
+      :to="{ name: 'EventList', query: { size: 6}}"
+      rel="large"
+    > L
+    </router-link>
+
+  </div>
 
   <!-- new element -->
   <router-view />
@@ -32,4 +56,5 @@
 h4 {
   font-size: 20px;
 }
+
 </style>
