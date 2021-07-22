@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>{{ event.title }}</h1>
-        <p>{{ event.title }}</p> on {{ event.data }} @{{ event.location }}
+        <p>{{ event.time }}</p> on {{ event.data }} @{{ event.location }}
         <p>{{ event.description }}</p>
     </div>
 </template>
