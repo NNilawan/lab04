@@ -2,15 +2,19 @@
   <h1>Events For Good</h1>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event" />
-  <router-link
-  :to="{ name: 'EventList', query: { page: page - 1}}"
-  rel="prev"
-  v-if="page != 1"> Prev Page </router-link>
+    <div class="pagination">
+      <router-link
+      id="page-prev"
+      :to="{ name: 'EventList', query: { page: page - 1}}"
+      rel="prev"
+      v-if="page != 1"> Prev Page </router-link>
 
-  <router-link
-  :to="{ name: 'EventList', query: { page: page + 1}}"
-  rel="next"
-  v-if="hasNextPage"> Next Page </router-link>
+      <router-link
+        id="page-next"
+      :to="{ name: 'EventList', query: { page: page + 1}}"
+      rel="next"
+      v-if="hasNextPage"> Next Page </router-link>
+    </div>
   </div>
 </template>
 
@@ -64,5 +68,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.pagination {
+  display: flex;
+  width: 290px;
+}
+.pagination a {
+  flex: 1;
+  text-decoration: none;
+  color: #2c3e50;
+}
+#page-prev {
+  text-align: left;
+}
+#page-next {
+  text-align: right;
 }
 </style>
