@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="event">
         <h1>{{ event.title }}</h1>
         <p>{{ event.time }}</p> on {{ event.data }} @{{ event.location }}
         <p>{{ event.description }}</p>
