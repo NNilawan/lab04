@@ -10,11 +10,19 @@
 export default {
     data() {
         return{
-            event: null
+            event: null,
+            id: 123
         }
     },
     created(){
         // fetch event (by id) and set local event data
+    EventService.getEvent(this.id)
+    .then(response => {
+        this.event = response.data
+    })
+    .catch(error => {
+        console.log(error)
+    })
     }
 }
 </script>
